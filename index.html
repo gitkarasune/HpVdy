@@ -18,9 +18,20 @@
   <body>
     <div id="opening_screen" class="animated">
       <h2 class="spinning" font-weight="bolder" font-size="25px">
-        Happy Valentine's Day<br />to YOU.
+        Happy Valentine's Day<br /> to You <span id="nameList">💙</span>
       </h2>
     </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="input-container">
+          <input type="text" id="nameInput" placeholder="Enter your name" />
+          <button id="submitBtn">Submit</button>
+        </div>
+      </div>
+    </div>
+
     <script src="js/script.js" type="module"></script>
   </body>
 </html>
