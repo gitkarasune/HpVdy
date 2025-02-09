@@ -4,12 +4,23 @@ const nameInput = document.getElementById("nameInput");
 const submitBtn = document.getElementById("submitBtn");
 const nameList = document.getElementById("nameList");
 
-// Show modal when the page loads
+// Load saved names from localStorage when the page loads
 window.onload = () => {
   modal.style.display = "flex";
+  loadNames();
 };
 
-// Function to add name to the list
+// Function to load names from localStorage
+const loadNames = () => {
+  const savedNames = JSON.parse(localStorage.getItem("names")) || [];
+  savedNames.forEach((name) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = name;
+    nameList.appendChild(listItem);
+  });
+};
+
+// Function to add name to the list and save it to localStorage
 const addName = () => {
   const name = nameInput.value.trim();
   if (name) {
@@ -17,6 +28,11 @@ const addName = () => {
     const listItem = document.createElement("li");
     listItem.textContent = name;
     nameList.appendChild(listItem);
+
+    // Save the name to localStorage
+    const savedNames = JSON.parse(localStorage.getItem("names")) || [];
+    savedNames.push(name);
+    localStorage.setItem("names", JSON.stringify(savedNames));
 
     // Clear the input field
     nameInput.value = "";
